@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hw_bottomnavbar/page/home_page.dart';
+import 'package:hw_bottomnavbar/page/list_book_page.dart';
+import 'package:hw_bottomnavbar/page/list_posts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,8 +41,18 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text('Page $_currentIndex'),
+      body: Column(
+        children: [
+          IndexedStack(
+            index: _currentIndex,
+            children: const [
+              ListPosts(),
+              HomePage(),
+              ListBookPage(),
+            ],
+          ),
+          const SizedBox(height: 16.0), // Доданий роздільник
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
