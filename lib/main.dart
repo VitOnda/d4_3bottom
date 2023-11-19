@@ -26,12 +26,14 @@ class BottomNavigationBarApp extends StatefulWidget {
 }
 
 class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
-  int _currentIndex = 1;
+  int page = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueAccent,
       appBar: AppBar(
+        backgroundColor: Colors.black45,
         title: const Text(
           'Домашня робота. Три вкладки',
           style: TextStyle(
@@ -41,24 +43,15 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          IndexedStack(
-            index: _currentIndex,
-            children: const [
-              ListPosts(),
-              HomePage(),
-              ListBookPage(),
-            ],
-          ),
-          const SizedBox(height: 16.0), // Доданий роздільник
-        ],
+      body: Center(
+        child: Text('Page $page'),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: page,
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            page = index;
           });
         },
         items: const [
@@ -79,3 +72,4 @@ class _BottomNavigationBarAppState extends State<BottomNavigationBarApp> {
     );
   }
 }
+
